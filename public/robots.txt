@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://peakthink.org/sitemap.xml
+Host: https://peakthink.org

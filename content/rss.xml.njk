@@ -1,0 +1,30 @@
+---
+permalink: /rss.xml
+numberOfLatestPostsToShow: 10
+eleventyExcludeFromCollections: true
+---
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:source="http://source.scripting.com/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+<channel>
+	<title>{{ metadata.title }}</title>
+	<description>{{ metadata.description }}</description>
+	<link>{{ metadata.url | addPathPrefixToFullUrl }}</link>
+	<generator>{{ eleventy.generator }}</generator>
+	<lastBuildDate>{{ collections.essays | getNewestCollectionItemDate | dateToRfc822 }}</lastBuildDate>
+	{% set postsCount = collections.essays | length %}
+	{% set latestPostsCount = postsCount | min(numberOfLatestPostsToShow) %}
+	{% set postslist = collections.essays | head(-1 * numberOfLatestPostsToShow) %}
+	{%- for post in postslist | reverse %}
+	{% set absolutePostUrl %}{{ post.url | htmlBaseUrl(metadata.url) }}{% endset %}
+	<item>
+		<title>{{ post.data.title }}</title>
+		<description>{{ post.templateContent | transformWithHtmlBase(absolutePostUrl, post.url) | truncate(280) }}</description>
+		<link>{{ absolutePostUrl }}</link>
+		<guid isPermaLink="false">{{ absolutePostUrl }}</guid>
+		<pubDate>{{ post.date | dateToRfc822 }}</pubDate>
+		<content:encoded>{{ post.templateContent | transformWithHtmlBase(absolutePostUrl, post.url) }}</content:encoded>
+		<source:markdown>{{ post.template.frontMatter.content }}</source:markdown>
+	</item>
+	{%- endfor %}
+</channel>
+</rss>

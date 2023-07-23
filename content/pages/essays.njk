@@ -1,0 +1,28 @@
+---
+layout: layouts/base.njk
+numberOfLatestPostsToShow: 4
+---
+<header>
+  <h1 itemprop="headline">All Essays</h1>
+</header>
+<main>
+{% set postslist = collections.essays %}
+{% set lastmonth = "" %}
+{% for post in postslist | reverse %}
+  {% set thismonth = post.date | readableDate("LLLL yyyy") %}
+  {% if thismonth !== lastmonth %}
+    {% if lastmonth !== "" %}</ol>{% endif %}
+    <h2><a href="/{{ post.date | readableDate("y-LL") }}/">{{ thismonth }}</a></h2>
+    <ol class="list-none">
+    {% set lastmonth = thismonth %}
+  {% endif %}
+  <li><a href="{{ post.url }}" itemprop="url">
+    <span itemprop="headline">{{ post.data.title }}</span>
+  </a></li>
+{% endfor %}
+</ol>
+<hr>
+<footer>
+{% include "bio.njk" %}
+</footer>
+</main>

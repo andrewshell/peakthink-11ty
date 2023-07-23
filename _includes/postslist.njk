@@ -1,0 +1,23 @@
+<ol class="list-none">
+{% for post in postslist | reverse %}
+  <li>
+    <article class="post-list-item" itemscope itemtype="http://schema.org/Article">
+      <header>
+        <h2>
+        	<a href="{{ post.url }}" itemprop="url">
+        		<span itemprop="headline">{{ post.data.title }}</span>
+        	</a>
+        </h2>
+        <small datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate("DDD") }}</small>
+      </header>
+      <section>
+        {% if post.data.excerpt %}
+        <p itemprop="description">{{ post.data.excerpt }}</p>
+        {% else %}
+        <p itemprop="description">{{ post.content | striptags | truncate(280) | safe }}</p>
+        {% endif %}
+      </section>
+    </article>
+  </li>
+{% endfor %}
+</ol>

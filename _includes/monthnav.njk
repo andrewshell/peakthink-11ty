@@ -1,0 +1,18 @@
+<nav class="blog-post-nav">
+  <ul>
+    <li>
+      {% if previousPost %}
+      <a rel="prev" href="/{{ previousPost.date | readableDate("y-LL") }}/">
+          ← {{ previousPost.date | readableDate("LLLL yyyy") }}
+      </a>
+      {% endif %}
+    </li>
+    <li>
+      {% if nextPost %}
+      <a rel="next" href="/{{ nextPost.date | readableDate("y-LL") }}/">
+          {{ nextPost.date | readableDate("LLLL yyyy") }} →
+      </a>
+      {% endif %}
+    </li>
+  </ul>
+</nav>

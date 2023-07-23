@@ -1,0 +1,27 @@
+---
+pagination:
+  data: collections.months
+  size: 1
+  alias: month
+layout: layouts/base.njk
+showTitle: true
+eleventyComputed:
+  title: "{{ month.title }}"
+permalink: /{{ month.slug }}/
+---
+<article class="blog-post" itemscope itemtype="https://schema.org/Collection">
+<header>
+  <h1 itemprop="headline">{{ title }}</h1>
+</header>
+<section itemprop="mainEntity">
+{% set postslist = collections.essays | forMonth(month.slug) %}
+{% include "postslist.njk" %}
+<hr>
+<footer>
+{% include "bio.njk" %}
+</footer>
+</section>
+
+{% set previousPost = collections.essays | getPreviousCollectionItem(postslist[0]) %}
+{% set nextPost = collections.essays | getNextCollectionItem(postslist[postslist.length - 1]) %}
+{% include "monthnav.njk" %}
