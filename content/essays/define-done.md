@@ -1,7 +1,7 @@
 ---
 title: "What does \"done\" look like?"
 date: 2023-07-23T16:02:34.000Z
-updated: 2023-06-28T16:25:56.000Z
+updated: 2023-08-05T19:13:09.000Z
 published: true
 pagetype: https://schema.org/WebPage
 itemtype: https://schema.org/Article
@@ -18,6 +18,10 @@ Why do I like this? Because I finish projects and finished projects are progress
 It also gives me natural breaking points. Instead of feeling like I have to work on the same project forever, I get to finish and re-prioritize before starting my next project.
 
 That way, instead of a giant list of unfinished projects, you have a list of finished projects and a list of possible next projects.
+
+## Related
+
+- [Podcast: Rescuing A Project In Progress](https://share.transistor.fm/s/73e5e059)
 
 ## Backlinks
 
